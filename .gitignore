@@ -6,3 +6,4 @@ phpunit.xml
 .php_cs.cache
 /docs/cache
 /docs/log
+.env
