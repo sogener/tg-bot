@@ -1,20 +1,19 @@
-###############################################################################
-#                          Generated on phpdocker.io                          #
-###############################################################################
 version: '3.1'
 services:
-    webserver:
-        image: 'nginx:alpine'
-        working_dir: /App
-        volumes:
-            - '.:/App'
-            - './phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
-        ports:
-            - '8080:80'
+  webserver:
+    image: 'nginx:alpine'
+    working_dir: /App
+    volumes:
+      - '.:/App'
+      - './.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
+      - './.docker/nginx/ssl:/etc/nginx/ssl'
+    ports:
+      - '8080:80'
+      - '443:443'
 
-    php-fpm:
-        build: phpdocker/php-fpm
-        working_dir: /App
-        volumes:
-            - '.:/App'
-            - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini'
+  php-fpm:
+    build: .docker/php-fpm
+    working_dir: /App
+    volumes:
+      - '.:/App'
+      - './.docker/php-fpm/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini'
