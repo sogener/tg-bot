@@ -15,7 +15,8 @@
         "php": ">=8.1.0",
         "guzzlehttp/guzzle": "^7.4",
         "symfony/dotenv": "^6.0",
-        "longman/telegram-bot": "^0.76.1"
+        "longman/telegram-bot": "^0.73",
+        "php-telegram-bot/telegram-bot-manager": "^1.7"
     }
     ,
     "require-dev": {

@@ -1,27 +1,9 @@
 <?php
 
-include '../vendor/autoload.php';
 
-use App\Integration\RequestFactory;
-use App\Integration\StreamFactory;
-use GuzzleHttp\Client;
-use Symfony\Component\Dotenv\Dotenv;
-use TgBotApi\BotApiBase\ApiClient;
-use TgBotApi\BotApiBase\BotApi;
-use TgBotApi\BotApiBase\BotApiNormalizer;
-use TgBotApi\BotApiBase\Method\SendMessageMethod;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-$dotEnv = new Dotenv();
-$dotEnv->load('../.env');
+include_once '../vendor/autoload.php';
 
-$botToken = $_ENV['BOT_TOKEN'];
-$userId = $_ENV['USER_ID'];
-
-$requestFactory = new RequestFactory();
-$streamFactory = new StreamFactory();
-$client = new Client();
-
-$apiClient = new ApiClient($requestFactory, $streamFactory, $client);
-$bot = new BotApi($botToken, $apiClient, new BotApiNormalizer());
-
-$bot->send(SendMessageMethod::create($userId, 'Well hello'));
